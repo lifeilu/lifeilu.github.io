@@ -149,6 +149,37 @@
     
     
         <article class="index-post">
+            <a class="content-show-full" href = "/2017/11/09/html-viewport-set/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>移动端Web页面适配方案</span>
+                    </h2>
+                <div class="abstract-content">
+                    延续之前的移动端项目开发，需求要求把从后台获取到的一段html显示在界面上。
+v-html解析html文本在Vue.js上有个指令是v-html。具体语法是：1&lt;div v-html=&quot;html&quot;&gt;&lt;/div&gt;
+其中html部分替换成要绑定的html就可以了，v-html可以解析html代码段并显示出来。还有一个相似的指令v-text可以将以文字部分显示出来。以上就完成了将html插入页面的操作。但是存在着问题，插入的html是web页面格式的，显示在移动端的时候会出现横向滚动条，不符合我们项目的要求。因此，如何才能适配呢？
+meta标签的vi...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = vue.js>vue.js</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/09</span>
+                </div>
+            </div>
+        </article>
+    
+    
+    
+        <article class="index-post">
             <a class="content-show-full" href = "/2017/11/07/myfirstblog/" >
                     <h2 class="abstract-title">
                         
@@ -157,7 +188,9 @@
                 <div class="abstract-content">
                     之前在CSDN上写博客，今天心血来潮，决定自己搭个博客。采用github pages 和 hexo,现在把搭建过程和遇到的问题整理一下～
 新建git仓库这个过程很简单，在github上新建名字为 用户名.github.io 的仓库
-安装hexonpm install -g hexo-cli采用npm进行安装,安装过程报错，Permission denied加了sudosudo npm install -g hexo-cli报错，cannot create highlight_alias.json: Permission denied运行命令npm config set unsafe-pe...
+安装hexo1npm install -g hexo-cli
+采用npm进行安装,安装过程报错，Permission denied加了sudo1sudo npm install -g hexo-cli
+报错，cannot create highlight_alias.json: Permission denied运行命令1npm config set unsa...
                 </div>
             </a>
             <div class="abstract-post-meta">
@@ -254,7 +287,14 @@
     
     
     
-    <div class="total-archive"> Total : 2 </div>
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 3 </div>
     
     <div class="post-archive">
     
@@ -263,6 +303,11 @@
     
     <div class="archive-year"> 2017 </div>
     <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/09</span><a class="archive-post-title" href= "/2017/11/09/html-viewport-set/" >移动端Web页面适配方案</a>
+        </li>
     
     
         <li class="archive-post-item">
@@ -278,6 +323,8 @@
   </div>
         <div class="sidebar-tags">
     <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name"><a href= "#">vue.js</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">hexo</a></span>
     

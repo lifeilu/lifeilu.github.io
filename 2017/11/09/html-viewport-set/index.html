@@ -1,0 +1,394 @@
+<!DOCTYPE html>
+<html>
+    <head>
+    <meta http-equiv="content-type" content="text/html; charset=utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
+    <title>
+        
+        移动端Web页面适配方案 · lifeilu
+        
+    </title>
+    <link rel="icon" href= /assests/favicon.ico>
+    <!-- TODO: 在font-face加载完毕后改变字体  -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/webfont/1.6.28/webfontloader.js"></script>
+    <!-- 提前加载place holder  -->
+    <style type="text/css">
+        @font-face {
+            font-family: 'Oswald-Regular';
+            src: url(/font/Oswald-Regular.ttf);
+        }
+    </style>
+    <style type="text/css">
+        .site-intro-placeholder {
+            position: absolute;
+            z-index: -2;
+            top: 0;
+            left: 0px;
+            width: calc(100% + 300px);
+            height: 100%;
+            background: repeating-linear-gradient(-45deg, #444 0, #444 80px, #333 80px, #333 160px);
+            background-position: center center;
+            transform: translate3d(-226px, 0, 0);
+            animation: gradient-move 2.5s ease-out 0s 1;
+        }
+        @keyframes gradient-move {
+        0% {
+            transform: translate3d(-226px, 0, 0);
+        }
+        100% {
+            transform: translate3d(0, 0, 0);
+        }
+    }
+</style>
+    <link rel="stylesheet" href = /css/style.css?v=20171020 />
+    <script src="//cdn.staticfile.org/jquery/3.2.1/jquery.min.js" defer></script>
+    
+    <script src="/scripts/main.js" defer></script>
+    <!-- 百度统计  -->
+    
+    <!-- 谷歌统计  -->
+    
+</head>
+    
+        <body class="post-body">
+    
+    
+<header class="header">
+
+    <div class="header-sidebar-menu">&#xe775;</div>
+    <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >菲的博客</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">移动端Web页面适配方案</a>
+            </div>
+    </div>
+    
+    <a class="home-link" href=/>菲的博客</a>
+</header>
+    <div class="wrapper">
+        <div class="site-intro">
+    
+    <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
+            
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-placeholder"></div>
+    <div class="site-intro-meta">
+        <!-- 标题  -->
+        <h1 class="intro-title">
+            <!-- 主页  -->
+            
+            移动端Web页面适配方案
+            <!-- 404 -->
+            
+        </h1>
+        <!-- 副标题 -->
+        <p class="intro-subtitle">
+            <!-- 主页副标题  -->
+            
+            
+            <!-- 404 -->
+            
+        </p>
+        <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = vue.js>vue.js</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2017/11/09</span>
+            </div>
+        
+    </div>
+</div>
+        <img class="loading" src="/assets/loading.svg" style="display: block; margin: 6rem auto 0 auto; width: 6rem; height: 6rem;" />
+        <script>
+            var browser = {
+                    versions: function () {
+                        var u = window.navigator.userAgent;
+                        return {
+                            userAgent: u,
+                            trident: u.indexOf('Trident') > -1, //IE内核
+                            presto: u.indexOf('Presto') > -1, //opera内核
+                            webKit: u.indexOf('AppleWebKit') > -1, //苹果、谷歌内核
+                            gecko: u.indexOf('Gecko') > -1 && u.indexOf('KHTML') == -1, //火狐内核
+                            mobile: !!u.match(/AppleWebKit.*Mobile.*/), //是否为移动终端
+                            ios: !!u.match(/\(i[^;]+;( U;)? CPU.+Mac OS X/), //ios终端
+                            android: u.indexOf('Android') > -1 || u.indexOf('Linux') > -1, //android终端或者uc浏览器
+                            iPhone: u.indexOf('iPhone') > -1 || u.indexOf('Mac') > -1, //是否为iPhone或者安卓QQ浏览器
+                            iPad: u.indexOf('iPad') > -1, //是否为iPad
+                            webApp: u.indexOf('Safari') == -1, //是否为web应用程序，没有头部与底部
+                            weixin: u.indexOf('MicroMessenger') == -1, //是否为微信浏览器
+                            uc: u.indexOf('UCBrowser') > -1 //是否为android下的UC浏览器
+                        };
+                    }()
+                }
+
+            function fontLoaded(){
+                console.log('font loaded');
+                if (document.getElementsByClassName('site-intro-meta')) {
+                    document.getElementsByClassName('intro-title')[0].classList.add('intro-fade-in');
+                    document.getElementsByClassName('intro-subtitle')[0].classList.add('intro-fade-in');
+                    var postIntroTags = document.getElementsByClassName('post-intro-tags')[0],
+                        postIntroMeat = document.getElementsByClassName('post-intro-meta')[0];
+                        if (postIntroTags) {
+                            postIntroTags.classList.add('post-fade-in');
+                        }
+                        if (postIntroMeat) {
+                            postIntroMeat.classList.add('post-fade-in');
+                        }
+                    }
+                }
+                
+            console.log("userAgent:" + browser.versions.userAgent);
+            // UC不支持跨域，所以直接显示
+            if (browser.versions.uc) {
+                console.log("UCBrowser");
+                fontLoaded();
+            } else {
+                WebFont.load({
+                    custom: {
+                        families: ['Oswald-Regular']
+                    },
+                    loading: function () {  //所有字体开始加载
+                        // console.log('loading');
+                    },
+                    active: function () {  //所有字体已渲染
+                        fontLoaded();
+                    },
+                    inactive: function () { //字体预加载失败，无效字体或浏览器不支持加载
+                        console.log('inactive: timeout');
+                        fontLoaded();
+                    },
+                    timeout: 7000 // Set the timeout to two seconds
+                });
+            }
+        </script>
+        <div class="container container-unloaded">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>延续之前的移动端项目开发，需求要求把从后台获取到的一段html显示在界面上。</p>
+<h1 id="v-html解析html文本"><a href="#v-html解析html文本" class="headerlink" title="v-html解析html文本"></a>v-html解析html文本</h1><p>在Vue.js上有个指令是<a href="https://cn.vuejs.org/v2/api/#v-html" target="_blank" rel="external">v-html</a>。具体语法是：<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;div v-html=&quot;html&quot;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>其中html部分替换成要绑定的html就可以了，v-html可以解析html代码段并显示出来。<br>还有一个相似的指令<a href="https://cn.vuejs.org/v2/api/#v-text" target="_blank" rel="external">v-text</a>可以将以文字部分显示出来。<br>以上就完成了将html插入页面的操作。<br>但是存在着问题，<strong><font color="red">插入的html是web页面格式的，显示在移动端的时候会出现横向滚动条</font></strong>，<br>不符合我们项目的要求。因此，如何才能适配呢？</p>
+<h1 id="meta标签的viewport"><a href="#meta标签的viewport" class="headerlink" title="meta标签的viewport"></a>meta标签的viewport</h1><p>通过设置html的meta标签的viewport属性。这里有详细的<a href="https://www.cnblogs.com/2050/p/3877280.html" target="_blank" rel="external">viewport</a>的介绍<br>可以在要插入的html文本的head部分加入如下代码<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;meta name=&apos;viewport&apos; content=&apos;width=device-width&apos;&gt;</div></pre></td></tr></table></figure></p>
+<p>这样即可完成视口的设置，在chrome浏览器和android设备上测试，均可正常显示。<br>但是在<strong><font color="red">iOS设备上并没有起效</font></strong>。查找原因，发现需要配置config文件。</p>
+<h2 id="iOS上设置config文件"><a href="#iOS上设置config文件" class="headerlink" title="iOS上设置config文件"></a>iOS上设置config文件</h2><p>需要把config.xml下的EnableViewportScale改为true<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">&lt;preference name=&quot;EnableViewportScale&quot; value=&quot;true&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>这样即可完成视口的调整，完成web页面和移动端的适配。<br>但是由于要插入html的页面还有其他内容，大体的结构是<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&apos;div1&apos;&gt;&lt;/div&gt;</div><div class="line">&lt;div v-html=&apos;html&apos;&gt;&lt;/div&gt;</div><div class="line">&lt;div id=&apos;div2&apos;&gt;&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>在设置了viewport之后会导致整个页面缩放的效果，从而导致<strong><font color="red">div1和div2的内容也进行了缩放</font></strong>，不符合我们的要求。</p>
+<h1 id="iframe嵌入html文本"><a href="#iframe嵌入html文本" class="headerlink" title="iframe嵌入html文本"></a>iframe嵌入html文本</h1><p>考虑到使用<a href="http://www.runoob.com/tags/tag-iframe.html" target="_blank" rel="external">iframe</a>定义一个内联框架，可以用来在当前html文档中嵌入另一个文档。具体语法为<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div></pre></td><td class="code"><pre><div class="line">&lt;div id=&apos;iframeWrapper&apos;&gt;</div><div class="line">  &lt;iframe :srcdoc=&apos;content&apos;&gt;&lt;/iframe&gt;</div><div class="line">  或者</div><div class="line">  &lt;iframe src=&apos;content.html&apos;&gt;&lt;/iframe&gt;</div><div class="line">&lt;/div&gt;</div></pre></td></tr></table></figure></p>
+<p>通过设定iframe的src可以完成嵌入html的操作。在chrome和android设备上测试通过，<br>但是<strong><font color="red">在iOS设备上，iframe不能正常显示</font></strong>。同样，需要配置config文件。</p>
+<h2 id="iOS上设置config文件-1"><a href="#iOS上设置config文件-1" class="headerlink" title="iOS上设置config文件"></a>iOS上设置config文件</h2><p>查阅<a href="http://blog.csdn.net/ilv_xj/article/details/72778501" target="_blank" rel="external">资料</a>得知，需要在config.xml里配置权限<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">&lt;allow-navigation href=&quot;*&quot;/&gt;</div><div class="line">&lt;allow-intent href=&quot;*&quot;/&gt;</div><div class="line">&lt;access origin=&quot;*&quot; /&gt;</div></pre></td></tr></table></figure></p>
+<p>配置完成之后，iOS设备也可显示iframe，接下来要设置iframe的格式了。</p>
+<h2 id="iframe动态适配高度和宽度"><a href="#iframe动态适配高度和宽度" class="headerlink" title="iframe动态适配高度和宽度"></a>iframe动态适配高度和宽度</h2><p>承接上面的问题，嵌入的html文本是带格式的，我们需要动态设置iframe的高度和宽度，使得它的宽度正好为设备的宽度，不再出现横向滚动条。<br>具体做法为在iframe的onload事件中设置样式<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div></pre></td><td class="code"><pre><div class="line">onloaded: function () &#123;</div><div class="line">  var iframe = document.getElementById(&apos;iframe&apos;)</div><div class="line">  var height = iframe.contentWindow.document.body.scrollHeight || iframe.contentWindow.document.documentElement.scrollHeight</div><div class="line">  var width = iframe.contentWindow.document.body.scrollWidth || iframe.contentWindow.document.documentElement.scrollWidth</div><div class="line">  iframe.height = height</div><div class="line">  iframe.width = width</div><div class="line">  iframe.style.minWidth = width</div><div class="line">  iframe.style.minHeight = height</div><div class="line">  var clientwidth = document.documentElement.clientWidth</div><div class="line">  var scale = clientwidth / width</div><div class="line">  iframe.style.transform = &apos;scale(&apos; + scale + &apos;)&apos;</div><div class="line">  iframe.style.transformOrigin = &apos;0 0&apos;</div><div class="line">  iframe.style.border = &apos;none&apos;</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>如上面代码所示，可以通过设置<strong>transform的scale</strong>属性完成缩放的操作，在缩放之后需要把transformOrigin属性(默认50% 50%)设置一下，以上完成了缩放的操作。<br>但是发现<strong><font color="red">scale虽然缩放了，但是并没有影响布局，元素还占用了之前的空间</font></strong>，这里有<a href="https://segmentfault.com/q/1010000005919829" target="_blank" rel="external">说明</a>,<br>导致页面中间有一段空白。<br>因此，需要<strong>动态调整iframe外层的div元素的高度</strong>，具体代码示例如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">window.parent.document.getElementById(&apos;iframeWrapper&apos;).style.height = height * scale + &apos;px&apos;</div></pre></td></tr></table></figure></p>
+<p>这样可以实现iframe和父元素的高度随着插入html的高度自适应变化。</p>
+<h2 id="onload函数调用了两次"><a href="#onload函数调用了两次" class="headerlink" title="onload函数调用了两次"></a>onload函数调用了两次</h2><p>测试过程中发现，<strong><font color="red">onload函数调用了两次</font></strong>。调整代码结构，将html文本中的iframe标签去掉，通过js来动态增加iframe元素。完整代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div></pre></td><td class="code"><pre><div class="line">onLoaded: function (content) &#123;</div><div class="line">  var iframe = document.createElement(&apos;iframe&apos;)</div><div class="line">  var ifrWrapper = document.getElementById(&apos;iframeWrapper&apos;)</div><div class="line">  ifrWrapper.appendChild(iframe)</div><div class="line">  iframe.onload = function () &#123;</div><div class="line">    var clientwidth = document.documentElement.clientWidth</div><div class="line">    var height = iframe.contentWindow.document.body.scrollHeight || iframe.contentWindow.document.documentElement.scrollHeight</div><div class="line">    var width = iframe.contentWindow.document.body.scrollWidth || iframe.contentWindow.document.documentElement.scrollWidth</div><div class="line">    iframe.height = height</div><div class="line">    iframe.width = width</div><div class="line">    iframe.style.minWidth = width</div><div class="line">    iframe.style.minHeight = height</div><div class="line">    var scale = clientwidth / width</div><div class="line">    iframe.style.transform = &apos;scale(&apos; + scale + &apos;)&apos;</div><div class="line">    iframe.style.transformOrigin = &apos;0 0&apos;</div><div class="line">    iframe.style.border = &apos;none&apos;</div><div class="line">    window.parent.document.getElementById(&apos;iframeWrapper&apos;).style.height = height * scale + &apos;px&apos;</div><div class="line">  &#125;</div><div class="line">  iframe.srcdoc = content</div><div class="line">&#125;</div></pre></td></tr></table></figure></p>
+<p>以上的函数在从后台获取到要插入的html的内容的时候调用。<br>至此，通过iframe插入html文本并动态设置高度和宽度的功能就完成了。<br>其他的问题还在不断完善中…</p>
+<p>参考文献<br>1.<a href="https://cn.vuejs.org/v2/api/#v-html" target="_blank" rel="external">https://cn.vuejs.org/v2/api/#v-html</a><br>2.<a href="https://segmentfault.com/a/1190000008767416" target="_blank" rel="external">https://segmentfault.com/a/1190000008767416</a><br>3.<a href="http://clfsw.iteye.com/blog/1398806" target="_blank" rel="external">http://clfsw.iteye.com/blog/1398806</a><br>4.<a href="http://www.runoob.com/tags/tag-iframe.html" target="_blank" rel="external">http://www.runoob.com/tags/tag-iframe.html</a><br>5.<a href="http://blog.csdn.net/ilv_xj/article/details/72778501" target="_blank" rel="external">http://blog.csdn.net/ilv_xj/article/details/72778501</a><br>6.<a href="https://segmentfault.com/q/1010000005919829" target="_blank" rel="external">https://segmentfault.com/q/1010000005919829</a><br>7.<a href="https://yq.aliyun.com/ziliao/167263" target="_blank" rel="external">https://yq.aliyun.com/ziliao/167263</a></p>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2017/11/07/myfirstblog/" title= github pages 和 hexo 配置个人博客 >
+                    <span>Previous Post</span>
+                    <span>github pages 和 hexo 配置个人博客</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
+    
+    
+    <!--PC版-->
+
+    <!--PC版-->
+
+
+    
+</main>
+            <!-- profile -->
+            
+        </div>
+        <footer class="footer footer-unloaded">
+    <!-- social  -->
+    
+    <div class="social">
+        
+    
+        
+            
+                <a href="mailto:lulifei@sjtu.edu.cn" class="iconfont-archer email" title=email ></a>
+            
+        
+    
+        
+            
+                <a href="//github.com/lifeilu" class="iconfont-archer github" target="_blank" title="github"></a>
+            
+        
+    
+        
+            
+                <a href="//blog.csdn.net/Iohboel" class="iconfont-archer others" target="_blank" title="others"></a>
+            
+        
+    
+        
+            
+                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
+            
+        
+    
+
+    </div>
+    
+    <!-- powered by Hexo  -->
+    <div class="copyright">
+        <span id="hexo-power">Powered by <a href="https://hexo.io/" target="_blank">Hexo</a></span><span class="iconfont-archer power">&#xe635;</span><span id="theme-info">Theme <a href="https://github.com/fi3ework/hexo-theme-archer" target="_blank">archer</a></span>
+    </div>
+    <!-- 不蒜子  -->
+    
+</footer>
+    </div>
+    <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#v-html解析html文本"><span class="toc-number">1.</span> <span class="toc-text">v-html解析html文本</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#meta标签的viewport"><span class="toc-number">2.</span> <span class="toc-text">meta标签的viewport</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS上设置config文件"><span class="toc-number">2.1.</span> <span class="toc-text">iOS上设置config文件</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#iframe嵌入html文本"><span class="toc-number">3.</span> <span class="toc-text">iframe嵌入html文本</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#iOS上设置config文件-1"><span class="toc-number">3.1.</span> <span class="toc-text">iOS上设置config文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#iframe动态适配高度和宽度"><span class="toc-number">3.2.</span> <span class="toc-text">iframe动态适配高度和宽度</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#onload函数调用了两次"><span class="toc-number">3.3.</span> <span class="toc-text">onload函数调用了两次</span></a></li></ol></li></ol>
+    </div>
+    
+    <div class="back-top">&#xe639;</div>
+    <div class="sidebar">
+    <div class="sidebar-header sidebar-header-show-archive">
+        <div class="sidebar-category">
+            <span class="sidebar-archive-link"><span class="iconfont-archer">&#xe67d;</span>Archive</span>
+            <span class="sidebar-tags-link"><span class="iconfont-archer">&#xe610;</span>Tag</span>
+        </div>
+    </div>
+    <div class="sidebar-content sidebar-content-show-archive">
+          <div class="sidebar-archive">
+    <!-- 在ejs中将archive按照时间排序 -->
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    
+    <div class="total-archive"> Total : 3 </div>
+    
+    <div class="post-archive">
+    
+    
+    
+    
+    <div class="archive-year"> 2017 </div>
+    <ul class="year-list">
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/09</span><a class="archive-post-title" href= "/2017/11/09/html-viewport-set/" >移动端Web页面适配方案</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2017/11/07/myfirstblog/" >github pages 和 hexo 配置个人博客</a>
+        </li>
+    
+    
+        <li class="archive-post-item">
+            <span class="archive-post-date">11/07</span><a class="archive-post-title" href= "/2017/11/07/hello-world/" >Hello World</a>
+        </li>
+    
+    </div>
+  </div>
+        <div class="sidebar-tags">
+    <div class="sidebar-tags-name">
+    
+        <span class="sidebar-tag-name"><a href= "#">vue.js</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">hexo</a></span>
+    
+    </div>
+    <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
+    缺失模块。<br/>
+    1、请确保node版本大于6.2<br/>
+    2、在博客根目录（注意不是archer根目录）执行以下命令：<br/>
+    <span style="color: #f75357; font-size: 1rem; line-height: 2rem;">npm i hexo-generator-json-content --save</span><br/>
+    3、在根目录_config.yml里添加配置：
+    <pre style="color: #888; font-size: 0.6rem;">
+jsonContent:
+  meta: false
+  pages: false
+  posts:
+    title: true
+    date: true
+    path: true
+    text: false
+    raw: false
+    content: false
+    slug: false
+    updated: false
+    comments: false
+    link: false
+    permalink: false
+    excerpt: false
+    categories: false
+    tags: true</pre>
+    </div> 
+    <div class="sidebar-tag-list"></div>
+</div>
+    </div>
+</div> 
+    <script>
+    var jsInfo = {
+        root: '/'
+    }
+</script>
+    <!-- 不蒜子  -->
+    
+    <!-- CNZZ统计  -->
+    
+    </div>
+    </body>
+</html>
+
+
