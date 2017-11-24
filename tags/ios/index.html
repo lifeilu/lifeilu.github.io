@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        github pages 和 hexo 配置个人博客 · lifeilu
+        lifeilu
         
     </title>
     <link rel="icon" href= /assests/favicon.ico>
@@ -50,22 +50,11 @@
     
 </head>
     
-        <body class="post-body">
-    
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
-    
-    <div class="banner">
-            <div class="blog-title">
-                <a href="/" >菲的博客</a>
-            </div>
-            <div class="post-title">
-                <a href="#" class="post-name">github pages 和 hexo 配置个人博客</a>
-            </div>
-    </div>
     
     <a class="home-link" href=/>菲的博客</a>
 </header>
@@ -73,49 +62,21 @@
         <div class="site-intro">
     
     <!-- 主页  -->
-    
-    
-    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            github pages 和 hexo 配置个人博客
-            <!-- 404 -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
-            
-            <!-- 404 -->
-            
         </p>
         <!-- 文章页meta -->
-        
-            <!-- 文章页标签  -->
-            
-                <div class= post-intro-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = hexo>hexo</a>
-    
-</div>
-            
-            <div class="post-intro-meta">
-                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
-                <span class="post-intro-time">2017/11/07</span>
-            </div>
-        <!-- 不蒜子  -->
-        
-        <span id="busuanzi_container_page_pv" style='color: rgba(255,255,255,0.5);'>
-            阅读量:<span id="busuanzi_value_page_pv"></span>
-        </span>
-        
         
     </div>
 </div>
@@ -183,73 +144,40 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main post-page">
-    <article class="article-entry">
-        <p>之前在<a href="http://blog.csdn.net/Iohboel" target="_blank" rel="external">CSDN</a>上写博客，今天心血来潮，决定自己搭个博客。采用github pages 和 hexo,<br>现在把搭建过程和遇到的问题整理一下～</p>
-<h1 id="新建git仓库"><a href="#新建git仓库" class="headerlink" title="新建git仓库"></a>新建git仓库</h1><p>这个过程很简单，在github上新建名字为 用户名.github.io 的仓库</p>
-<h1 id="安装hexo"><a href="#安装hexo" class="headerlink" title="安装hexo"></a>安装hexo</h1><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install -g hexo-cli</div></pre></td></tr></table></figure>
-<p>采用npm进行安装,安装过程报错，Permission denied<br>加了sudo<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo npm install -g hexo-cli</div></pre></td></tr></table></figure></p>
-<p>报错，cannot create highlight_alias.json: Permission denied<br>运行命令<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm config set unsafe-perm true</div></pre></td></tr></table></figure></p>
-<p>之后再安装<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">sudo npm install -g hexo-cli</div></pre></td></tr></table></figure></p>
-<p>成功</p>
-<h1 id="配置hexo"><a href="#配置hexo" class="headerlink" title="配置hexo"></a>配置hexo</h1><h2 id="初始化"><a href="#初始化" class="headerlink" title="初始化"></a>初始化</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo init Code/Blog</div><div class="line">cd Code/Blog</div><div class="line">npm install</div></pre></td></tr></table></figure>
-<h2 id="修改配置文件-config-yml"><a href="#修改配置文件-config-yml" class="headerlink" title="修改配置文件_config.yml"></a>修改配置文件_config.yml</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div></pre></td><td class="code"><pre><div class="line">deploy:</div><div class="line">  type: git</div><div class="line">  repo: https://github.com/lifeilu/lifeilu.github.io.git</div><div class="line">  branch: master</div></pre></td></tr></table></figure>
-<h2 id="本地测试"><a href="#本地测试" class="headerlink" title="本地测试"></a>本地测试</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo generate</div><div class="line">hexo server</div></pre></td></tr></table></figure>
-<p>可以本地在localhost里打开预览</p>
-<h1 id="部署hexo到github"><a href="#部署hexo到github" class="headerlink" title="部署hexo到github"></a>部署hexo到github</h1><p>安装hexo-deployer-git<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">npm install hexo-deployer-git --save</div></pre></td></tr></table></figure></p>
-<p>这样才能将你写好的文章部署到github服务器上并让别人浏览到。之后运行<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div></pre></td><td class="code"><pre><div class="line">hexo clean</div><div class="line">hexo generate</div><div class="line">hexo deploy</div></pre></td></tr></table></figure></p>
-<p>以上就完成了博客的搭建。可以自己定义主题写博客咯～开心</p>
-<h1 id="常见命令"><a href="#常见命令" class="headerlink" title="常见命令"></a>常见命令</h1><h2 id="新建页面"><a href="#新建页面" class="headerlink" title="新建页面"></a>新建页面</h2><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div></pre></td><td class="code"><pre><div class="line">hexo new [layout] &lt;title&gt;</div></pre></td></tr></table></figure>
-<p>参考网址<br>1.<a href="http://blog.csdn.net/wlmnzf/article/details/73660441" target="_blank" rel="external">http://blog.csdn.net/wlmnzf/article/details/73660441</a><br>2.<a href="https://docs.npmjs.com/getting-started/fixing-npm-permissions" target="_blank" rel="external">https://docs.npmjs.com/getting-started/fixing-npm-permissions</a></p>
-
-    </article>
-    <!-- 前后页  -->
-    <ul class="post-pager">
-        
-            <li class="next">
-                <a href= "/2017/11/09/html-viewport-set/" title= 移动端Web页面适配方案 >
-                    <span>Next Post</span>
-                    <span>移动端Web页面适配方案</span>
-                </a>
-            </li>
-        
-        
-            <li class="previous">
-                <a href= "/2017/11/07/hello-world/" title= Hello World >
-                    <span>Previous Post</span>
-                    <span>Hello World</span>
-                </a>
-            </li>
-        
-    </ul>
-    <!-- 评论插件 -->
-    <!-- 来必力City版安装代码 -->
-
-<!-- City版安装代码已完成 -->
+            <main class="main index-page">
     
     
-<div id="container"></div>
-<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
-<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
-<script>
-    var gitment = new Gitment({
-        // id: "github pages 和 hexo 配置个人博客", // 可选。默认为 location.href
-        owner: 'lifeilu',
-        repo: 'lifeilu.github.io',
-        oauth: {
-            client_id: '6f364d2a3b9e2ccf2f0a',
-            client_secret: '4b0e7fcb22ea53f8a41068aba4fb28159f7c6aeb',
-        },
-    })
-    gitment.render('container')
-
-</script>
-
-    <!--PC版-->
-
-    <!--PC版-->
-
-
+    
+        <article class="index-post">
+            <a class="content-show-full" href = "/2017/11/24/cordova-plugin-inappbrowser/" >
+                    <h2 class="abstract-title">
+                        
+                        <span>cordova-plugin-inappbrowser在app内部打开浏览器链接</span>
+                    </h2>
+                <div class="abstract-content">
+                    在使用vue.js进行app开发的时候，需要实现附件点击，可以查看和下载的功能。原始的实现方案代码如下12345onClick: function() &#123;    var a = document.createElement(&apos;a&apos;)    a.href = url    a.click()&#125;
+这个方案在安卓下是自动跳转到默认浏览器打开，可以自行选择查看还是下载，但是在iOS下，会在app内部打开，由于iOS没有返回按钮，只能杀掉app,重新进入，不符合要求。查阅资料发现，可以采用cordova-plugin-inappbrowser实现在app内部...
+                </div>
+            </a>
+            <div class="abstract-post-meta">
+                <!-- tags  -->
+                
+                <div class= abstract-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = vue.js>vue.js</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = ios>ios</a>
+    
+</div>
+                
+                <!-- date  -->
+                <div class="abstract-date">
+                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/24</span>
+                </div>
+            </div>
+        </article>
+    
+    <!-- paginator  -->
     
 </main>
             <!-- profile -->
@@ -302,13 +230,6 @@
 </footer>
     </div>
     <!-- toc -->
-    
-    <div class="toc-wrapper">
-        <div class="toc-catalog">
-            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
-        </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#新建git仓库"><span class="toc-number">1.</span> <span class="toc-text">新建git仓库</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#安装hexo"><span class="toc-number">2.</span> <span class="toc-text">安装hexo</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#配置hexo"><span class="toc-number">3.</span> <span class="toc-text">配置hexo</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#初始化"><span class="toc-number">3.1.</span> <span class="toc-text">初始化</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#修改配置文件-config-yml"><span class="toc-number">3.2.</span> <span class="toc-text">修改配置文件_config.yml</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#本地测试"><span class="toc-number">3.3.</span> <span class="toc-text">本地测试</span></a></li></ol></li><li class="toc-item toc-level-1"><a class="toc-link" href="#部署hexo到github"><span class="toc-number">4.</span> <span class="toc-text">部署hexo到github</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#常见命令"><span class="toc-number">5.</span> <span class="toc-text">常见命令</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#新建页面"><span class="toc-number">5.1.</span> <span class="toc-text">新建页面</span></a></li></ol></li></ol>
-    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
