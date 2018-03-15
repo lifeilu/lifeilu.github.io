@@ -6,7 +6,7 @@
   <link href="/atom.xml" rel="self"/>
   
   <link href="http://yoursite.com/"/>
-  <updated>2017-11-24T05:21:59.000Z</updated>
+  <updated>2018-03-15T02:14:51.000Z</updated>
   <id>http://yoursite.com/</id>
   
   <author>
@@ -15,6 +15,33 @@
   </author>
   
   <generator uri="http://hexo.io/">Hexo</generator>
+  
+  <entry>
+    <title>Native-H5-Communication</title>
+    <link href="http://yoursite.com/2018/03/15/native-h5-communication/"/>
+    <id>http://yoursite.com/2018/03/15/native-h5-communication/</id>
+    <published>2018-03-15T01:52:32.000Z</published>
+    <updated>2018-03-15T02:14:51.000Z</updated>
+    
+    <content type="html"><![CDATA[<p>在<a href="https://lifeilu.github.io/2017/11/24/cordova-plugin-inappbrowser/" target="_blank" rel="external">上篇博客</a>提到，在H5开发的app中，希望调用手机自带浏览器显示附件,<br>在实际开发过程中，经常会用到原生app和H5互相调用的问题，<br>之前没有具体了解调用的机制，包括Native和H5如何互相通讯的实现机制。<br>近期参考了一些资料，整理成这篇博客。<br>方便之后继续完善。</p><p>原生和前端的交互有两种方式：url scheme以及JavaScriptCore（在Android中是addJavascriptInterface）</p><h2 id="url-scheme交互"><a href="#url-scheme交互" class="headerlink" title="url scheme交互"></a>url scheme交互</h2><p>url scheme适用于所有的系统设备（低版本Android和低版本iOS都适用）<br>但是url scheme是通过url拦截实现的，在大量数据传输，以及效率上都有影响。<br>基本原理为</p><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div></pre></td><td class="code"><pre><div class="line">H5 -&gt; 触发一个url（每一个功能代表的url都不同）-&gt; Native端捕获到url-&gt;</div><div class="line">Native端分析属于哪一个功能并执行 -&gt;Native端调用H5中的方法将执行结果回调给H5</div></pre></td></tr></table></figure><h2 id="H5直接与Native交互"><a href="#H5直接与Native交互" class="headerlink" title="H5直接与Native交互"></a>H5直接与Native交互</h2><h3 id="H5调Android"><a href="#H5调Android" class="headerlink" title="H5调Android"></a>H5调Android</h3><p>原生通过addJavascriptInterface注册，然后H5直接调用</p><h3 id="Android调H5"><a href="#Android调H5" class="headerlink" title="Android调H5"></a>Android调H5</h3><p>原生通过loadUrl来调用H5，4.4及以上还可以通过evaluateJavascript调用</p><h3 id="H5调iOS"><a href="#H5调iOS" class="headerlink" title="H5调iOS"></a>H5调iOS</h3><p>原生通过JavaScriptCore注册（需ios7以上），然后H5直接调用</p><h3 id="iOS调H5"><a href="#iOS调H5" class="headerlink" title="iOS调H5"></a>iOS调H5</h3><p>通过stringByEvaluatingJavaScriptFromString</p><h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul><li><a href="http://www.cnblogs.com/dailc/p/8097598.html" target="_blank" rel="external">H5和Native交互原理</a></li><li><a href="https://tech.youzan.com/jsbridge/" target="_blank" rel="external">H5与Native交互之JSBridge技术</a></li><li><a href="https://juejin.im/post/58bb8a24128fe10064431b68" target="_blank" rel="external">JavaScript调用App原生代码(iOS、Android)解决方案</a></li></ul>]]></content>
+    
+    <summary type="html">
+    
+      
+      
+        &lt;p&gt;在&lt;a href=&quot;https://lifeilu.github.io/2017/11/24/cordova-plugin-inappbrowser/&quot; target=&quot;_blank&quot; rel=&quot;external&quot;&gt;上篇博客&lt;/a&gt;提到，在H5开发的app中，希望调用手机自
+      
+    
+    </summary>
+    
+      <category term="笔记" scheme="http://yoursite.com/categories/%E7%AC%94%E8%AE%B0/"/>
+    
+    
+      <category term="Native" scheme="http://yoursite.com/tags/Native/"/>
+    
+      <category term="html" scheme="http://yoursite.com/tags/html/"/>
+    
+  </entry>
   
   <entry>
     <title>cordova-plugin-inappbrowser在app内部打开浏览器链接</title>

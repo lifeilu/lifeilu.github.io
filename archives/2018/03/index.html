@@ -50,10 +50,8 @@
     
 </head>
     
-        <body class="home-body">
     
-    
-<header class="header index-header">
+<header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
@@ -64,29 +62,18 @@
         <div class="site-intro">
     
     <!-- 主页  -->
-    
-    
-    <!-- 文章页  -->
             
-    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/intro-desktop.jpg)"></div>
+    <div class="site-intro-img" style="background-image: url(/)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
-            菲的博客
-            <!-- 文章页  -->
-            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
-            
-            
-                it's better to burn out than to fade away
-            
-            <!-- 文章页  -->
             
         </p>
         <!-- 文章页meta -->
@@ -191,196 +178,10 @@ url scheme交互url scheme适用于所有的系统设备（低版本Android和�
             </div>
         </article>
     
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/11/24/cordova-plugin-inappbrowser/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>cordova-plugin-inappbrowser在app内部打开浏览器链接</span>
-                    </h2>
-                <div class="abstract-content">
-                    在使用vue.js进行app开发的时候，需要实现附件点击，可以查看和下载的功能。原始的实现方案代码如下12345onClick: function() &#123;    var a = document.createElement(&apos;a&apos;)    a.href = url    a.click()&#125;
-这个方案在安卓下是自动跳转到默认浏览器打开，可以自行选择查看还是下载，但是在iOS下，会在app内部打开，由于iOS没有返回按钮，只能杀掉app,重新进入，不符合要求。查阅资料发现，可以采用cordova-plugin-inappbrowser实现在app内部...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = vue.js>vue.js</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = ios>ios</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/24</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/11/09/html-viewport-set/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>移动端Web页面适配方案</span>
-                    </h2>
-                <div class="abstract-content">
-                    延续之前的移动端项目开发，需求要求把从后台获取到的一段html显示在界面上。
-v-html解析html文本在Vue.js上有个指令是v-html。具体语法是：1&lt;div v-html=&quot;html&quot;&gt;&lt;/div&gt;
-其中html部分替换成要绑定的html就可以了，v-html可以解析html代码段并显示出来。还有一个相似的指令v-text可以将以文字部分显示出来。以上就完成了将html插入页面的操作。但是存在着问题，插入的html是web页面格式的，显示在移动端的时候会出现横向滚动条，不符合我们项目的要求。因此，如何才能适配呢？
-meta标签的vi...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = vue.js>vue.js</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = html>html</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 移动端>移动端</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/09</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/11/07/myfirstblog/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>github pages 和 hexo 配置个人博客</span>
-                    </h2>
-                <div class="abstract-content">
-                    之前在CSDN上写博客，今天心血来潮，决定自己搭个博客。采用github pages 和 hexo,现在把搭建过程和遇到的问题整理一下～
-新建git仓库这个过程很简单，在github上新建名字为 用户名.github.io 的仓库
-安装hexo1npm install -g hexo-cli
-采用npm进行安装,安装过程报错，Permission denied加了sudo1sudo npm install -g hexo-cli
-报错，cannot create highlight_alias.json: Permission denied运行命令1npm config set unsa...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = hexo>hexo</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/07</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/11/07/hello-world/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>Hello World</span>
-                    </h2>
-                <div class="abstract-content">
-                    Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-More info: Writing
-Run server1$ hexo server
-More...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/07</span>
-                </div>
-            </div>
-        </article>
-    
     <!-- paginator  -->
     
 </main>
             <!-- profile -->
-            
-            <div class="profile">
-    <img class="profile-avatar" src= /my-images/photo1.jpeg >
-    <div class="profile-name">lifeilu</div>
-    
-    <div class="profile-signature">
-        witness me
-    </div>
-    
-    
-    <div class="profile-social">
-        
-    
-        
-            
-                <a href="mailto:lulifei@sjtu.edu.cn" class="iconfont-archer email" title=email ></a>
-            
-        
-    
-        
-            
-                <a href="//github.com/lifeilu" class="iconfont-archer github" target="_blank" title="github"></a>
-            
-        
-    
-        
-            
-                <a href="//blog.csdn.net/Iohboel" class="iconfont-archer others" target="_blank" title="others"></a>
-            
-        
-    
-        
-            
-                <a href="/atom.xml" class="iconfont-archer rss" target="_blank" title="rss"></a>
-            
-        
-    
-
-    </div>
-    
-    
-        <div class="friends">
-            <div>FRIENDS</div>
-            
-                <span>
-                    <a href= //www.baidu.com target="_black">friendA</a>
-                </span>
-            
-                <span>
-                    <a href= //www.google.com target="_black">friendB</a>
-                </span>
-            
-        </div>
-    
-    
-        <div class="about-me">
-            <div>
-                <a href = "/about" >ABOUT ME</a>
-            </div>
-        </div>
-    
-</div>
             
         </div>
         <footer class="footer footer-unloaded">
