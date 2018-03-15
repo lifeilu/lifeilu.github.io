@@ -37,9 +37,9 @@
       <category term="笔记" scheme="http://yoursite.com/categories/%E7%AC%94%E8%AE%B0/"/>
     
     
-      <category term="Native" scheme="http://yoursite.com/tags/Native/"/>
-    
       <category term="html" scheme="http://yoursite.com/tags/html/"/>
+    
+      <category term="Native" scheme="http://yoursite.com/tags/Native/"/>
     
   </entry>
   
