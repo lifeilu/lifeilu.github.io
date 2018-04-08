@@ -60,14 +60,14 @@
     
     <div class="banner">
             <div class="blog-title">
-                <a href="/" >菲的博客</a>
+                <a href="/" >Fei Blog</a>
             </div>
             <div class="post-title">
                 <a href="#" class="post-name">js-map-sort</a>
             </div>
     </div>
     
-    <a class="home-link" href=/>菲的博客</a>
+    <a class="home-link" href=/>Fei Blog</a>
 </header>
     <div class="wrapper">
         <div class="site-intro">
@@ -99,6 +99,14 @@
         <!-- 文章页meta -->
         
             <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = js>js</a>
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = sort>sort</a>
+    
+</div>
             
             <div class="post-intro-meta">
                 <span class="post-intro-calander iconfont-archer">&#xe676;</span>
@@ -179,7 +187,7 @@
         <div class="container container-unloaded">
             <main class="main post-page">
     <article class="article-entry">
-        <h1 id="经常会用到ES6的Map排序-总结一下"><a href="#经常会用到ES6的Map排序-总结一下" class="headerlink" title="经常会用到ES6的Map排序,总结一下"></a>经常会用到ES6的Map排序,总结一下</h1><h2 id="js-ES6-Map-functions"><a href="#js-ES6-Map-functions" class="headerlink" title="js ES6 Map functions"></a>js ES6 Map functions</h2><ul>
+        <h1 id="经常会用到ES6的Map排序-总结一下"><a href="#经常会用到ES6的Map排序-总结一下" class="headerlink" title="经常会用到ES6的Map排序,总结一下"></a>经常会用到ES6的Map排序,总结一下</h1><h2 id="ES6-Map-functions"><a href="#ES6-Map-functions" class="headerlink" title="ES6 Map functions"></a>ES6 Map functions</h2><ul>
 <li>Map.has(KEY): 判断是否含有KEY</li>
 <li>Map.get(KEY): 获取指定KEY的VALUE值</li>
 <li>Map.keys(): 返回一个新的 Iterator对象</li>
@@ -189,18 +197,20 @@
 <li>Map.clear(): 移除Map对象的所有键/值对 。</li>
 <li>Map.delete(KEY): 移除任何与键相关联的值，并且返回该值，该值在之前会被Map.prototype.has(key)返回为true。之后再调用Map.prototype.has(key)会返回false。</li>
 </ul>
-<h2 id="js-sort-by-key"><a href="#js-sort-by-key" class="headerlink" title="js sort by key"></a>js sort by key</h2><ul>
+<h2 id="js-map-sort-by-key"><a href="#js-map-sort-by-key" class="headerlink" title="js map sort by key"></a>js map sort by key</h2><ul>
 <li>主要思想：将KEYS排序，然后把每个KEY对应的VALUE拿到即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function sortMapByKey(map) &#123;</div><div class="line">    var keys = map.keys();</div><div class="line">    var keysArr = [];</div><div class="line">    for(var key of keys)&#123;</div><div class="line">        keysArr.push(key);</div><div class="line">    &#125;</div><div class="line">    keysArr.sort(function(a,b) &#123;return a-b;&#125;);</div><div class="line">    var res = new Map();</div><div class="line">    for(var i=0;i&lt;keysArr.length;i++) &#123;</div><div class="line">        res.set(keysArr[i], map.get(keysArr[i]));</div><div class="line">    &#125;</div><div class="line">    return res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<h2 id="js-sort-by-value"><a href="#js-sort-by-value" class="headerlink" title="js sort by value"></a>js sort by value</h2><ul>
+<h2 id="js-map-sort-by-value"><a href="#js-map-sort-by-value" class="headerlink" title="js map sort by value"></a>js map sort by value</h2><ul>
 <li>比按照key进行排序稍微复杂一些</li>
 <li>主要思想是: 两个数组分别存储key和value,然后对value进行排序，在交换的时候把key的对应元素也进行交换。<br>之后把排序后的key和value的数组直接匹配即可。<figure class="highlight plain"><figcaption><span>sortMapByValue(map) &#123;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">    var swap = function(arr,i,j)&#123;</div><div class="line">        var tmp = arr[i];</div><div class="line">        arr[i] = arr[j];</div><div class="line">        arr[j] = tmp;</div><div class="line">    &#125;;</div><div class="line">    var keys = map.keys();</div><div class="line">    var values = map.values();</div><div class="line">    var keysArr = [], valuesArr = [];</div><div class="line">    for(var key of keys) &#123;</div><div class="line">        keysArr.push(key);</div><div class="line">    &#125;</div><div class="line">    for(var value of values) &#123;</div><div class="line">        valuesArr.push(value);</div><div class="line">    &#125;</div><div class="line">    var len = keysArr.length;</div><div class="line">    for(var i=0;i&lt;len;i++)&#123;</div><div class="line">        for(var j=len-1;j&gt;i;j--) &#123;</div><div class="line">            if(valuesArr[j-1]&lt;valuesArr[j]) &#123;</div><div class="line">                swap(valuesArr, j,j-1);</div><div class="line">                swap(keysArr, j,j-1);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    var res = new Map();</div><div class="line">    for(var i=0;i&lt;len;i++) &#123;</div><div class="line">        res.set(keysArr[i], valuesArr[i]);</div><div class="line">    &#125;</div><div class="line">    return res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
 </li>
 </ul>
-<p>##</p>
-<blockquote>
-<p><a href=""></a></p>
+<h2 id="References"><a href="#References" class="headerlink" title="References"></a>References</h2><blockquote>
+<ul>
+<li><a href="https://developer.mozilla.org/zh-CN/docs/Web/JavaScript/Reference/Global_Objects/Map" target="_blank" rel="external">Map of MDN</a></li>
+<li><a href="https://www.liaoxuefeng.com/wiki/001434446689867b27157e896e74d51a89c25cc8b43bdb3000/0014345007434430758e3ac6e1b44b1865178e7aff9082e000" target="_blank" rel="external">Map and Set</a></li>
+</ul>
 </blockquote>
 
     </article>
@@ -301,7 +311,7 @@
         <div class="toc-catalog">
             <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
         </div>
-        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#经常会用到ES6的Map排序-总结一下"><span class="toc-number">1.</span> <span class="toc-text">经常会用到ES6的Map排序,总结一下</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#js-ES6-Map-functions"><span class="toc-number">1.1.</span> <span class="toc-text">js ES6 Map functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js-sort-by-key"><span class="toc-number">1.2.</span> <span class="toc-text">js sort by key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js-sort-by-value"><span class="toc-number">1.3.</span> <span class="toc-text">js sort by value</span></a></li></ol></li></ol>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#经常会用到ES6的Map排序-总结一下"><span class="toc-number">1.</span> <span class="toc-text">经常会用到ES6的Map排序,总结一下</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#ES6-Map-functions"><span class="toc-number">1.1.</span> <span class="toc-text">ES6 Map functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js-map-sort-by-key"><span class="toc-number">1.2.</span> <span class="toc-text">js map sort by key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js-map-sort-by-value"><span class="toc-number">1.3.</span> <span class="toc-text">js map sort by value</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#References"><span class="toc-number">1.4.</span> <span class="toc-text">References</span></a></li></ol></li></ol>
     </div>
     
     <div class="back-top">&#xe639;</div>
@@ -315,6 +325,8 @@
     <div class="sidebar-content sidebar-content-show-archive">
           <div class="sidebar-archive">
     <!-- 在ejs中将archive按照时间排序 -->
+    
+    
     
     
     
@@ -429,15 +441,19 @@
     
         <span class="sidebar-tag-name"><a href= "#">vue.js</a></span>
     
-        <span class="sidebar-tag-name"><a href= "#">ios</a></span>
-    
         <span class="sidebar-tag-name"><a href= "#">html</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">移动端</a></span>
     
+        <span class="sidebar-tag-name"><a href= "#">ios</a></span>
+    
         <span class="sidebar-tag-name"><a href= "#">hexo</a></span>
     
         <span class="sidebar-tag-name"><a href= "#">Native</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">js</a></span>
+    
+        <span class="sidebar-tag-name"><a href= "#">sort</a></span>
     
     </div>
     <div class="tag-load-fail" style="display: none; color: #ccc; font-size: 0.6rem;">
