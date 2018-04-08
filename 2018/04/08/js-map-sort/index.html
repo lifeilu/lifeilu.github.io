@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        lifeilu
+        js-map-sort · lifeilu
         
     </title>
     <link rel="icon" href= /assests/favicon.ico>
@@ -50,11 +50,22 @@
     
 </head>
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >菲的博客</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">js-map-sort</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>菲的博客</a>
 </header>
@@ -62,21 +73,43 @@
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            js-map-sort
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/04/08</span>
+            </div>
+        <!-- 不蒜子  -->
+        
+        <span id="busuanzi_container_page_pv" style='color: rgba(255,255,255,0.5);'>
+            阅读量:<span id="busuanzi_value_page_pv"></span>
+        </span>
+        
         
     </div>
 </div>
@@ -144,195 +177,73 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
+            <main class="main post-page">
+    <article class="article-entry">
+        <h1 id="经常会用到ES6的Map排序-总结一下"><a href="#经常会用到ES6的Map排序-总结一下" class="headerlink" title="经常会用到ES6的Map排序,总结一下"></a>经常会用到ES6的Map排序,总结一下</h1><h2 id="js-ES6-Map-functions"><a href="#js-ES6-Map-functions" class="headerlink" title="js ES6 Map functions"></a>js ES6 Map functions</h2><ul>
+<li>Map.has(KEY): 判断是否含有KEY</li>
+<li>Map.get(KEY): 获取指定KEY的VALUE值</li>
+<li>Map.keys(): 返回一个新的 Iterator对象</li>
+<li>Map.values(): 返回一个新的 Iterator对象</li>
+<li>Map.set(KEY, VALUE): 设置KEY和VALUE</li>
+<li>Map.entries(): 返回一个新的 Iterator 对象，它按插入顺序包含了Map对象中每个元素的 [key, value] 数组。</li>
+<li>Map.clear(): 移除Map对象的所有键/值对 。</li>
+<li>Map.delete(KEY): 移除任何与键相关联的值，并且返回该值，该值在之前会被Map.prototype.has(key)返回为true。之后再调用Map.prototype.has(key)会返回false。</li>
+</ul>
+<h2 id="js-sort-by-key"><a href="#js-sort-by-key" class="headerlink" title="js sort by key"></a>js sort by key</h2><ul>
+<li>主要思想：将KEYS排序，然后把每个KEY对应的VALUE拿到即可。<figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div></pre></td><td class="code"><pre><div class="line">function sortMapByKey(map) &#123;</div><div class="line">    var keys = map.keys();</div><div class="line">    var keysArr = [];</div><div class="line">    for(var key of keys)&#123;</div><div class="line">        keysArr.push(key);</div><div class="line">    &#125;</div><div class="line">    keysArr.sort(function(a,b) &#123;return a-b;&#125;);</div><div class="line">    var res = new Map();</div><div class="line">    for(var i=0;i&lt;keysArr.length;i++) &#123;</div><div class="line">        res.set(keysArr[i], map.get(keysArr[i]));</div><div class="line">    &#125;</div><div class="line">    return res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<h2 id="js-sort-by-value"><a href="#js-sort-by-value" class="headerlink" title="js sort by value"></a>js sort by value</h2><ul>
+<li>比按照key进行排序稍微复杂一些</li>
+<li>主要思想是: 两个数组分别存储key和value,然后对value进行排序，在交换的时候把key的对应元素也进行交换。<br>之后把排序后的key和value的数组直接匹配即可。<figure class="highlight plain"><figcaption><span>sortMapByValue(map) &#123;</span></figcaption><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div></pre></td><td class="code"><pre><div class="line">    var swap = function(arr,i,j)&#123;</div><div class="line">        var tmp = arr[i];</div><div class="line">        arr[i] = arr[j];</div><div class="line">        arr[j] = tmp;</div><div class="line">    &#125;;</div><div class="line">    var keys = map.keys();</div><div class="line">    var values = map.values();</div><div class="line">    var keysArr = [], valuesArr = [];</div><div class="line">    for(var key of keys) &#123;</div><div class="line">        keysArr.push(key);</div><div class="line">    &#125;</div><div class="line">    for(var value of values) &#123;</div><div class="line">        valuesArr.push(value);</div><div class="line">    &#125;</div><div class="line">    var len = keysArr.length;</div><div class="line">    for(var i=0;i&lt;len;i++)&#123;</div><div class="line">        for(var j=len-1;j&gt;i;j--) &#123;</div><div class="line">            if(valuesArr[j-1]&lt;valuesArr[j]) &#123;</div><div class="line">                swap(valuesArr, j,j-1);</div><div class="line">                swap(keysArr, j,j-1);</div><div class="line">            &#125;</div><div class="line">        &#125;</div><div class="line">    &#125;</div><div class="line">    var res = new Map();</div><div class="line">    for(var i=0;i&lt;len;i++) &#123;</div><div class="line">        res.set(keysArr[i], valuesArr[i]);</div><div class="line">    &#125;</div><div class="line">    return res;</div><div class="line">&#125;</div></pre></td></tr></table></figure>
+</li>
+</ul>
+<p>##</p>
+<blockquote>
+<p><a href=""></a></p>
+</blockquote>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2018/03/15/native-h5-communication/" title= Native-H5-Communication >
+                    <span>Previous Post</span>
+                    <span>Native-H5-Communication</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
     
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/04/08/js-map-sort/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>js-map-sort</span>
-                    </h2>
-                <div class="abstract-content">
-                    经常会用到ES6的Map排序,总结一下js ES6 Map functions
-Map.has(KEY): 判断是否含有KEY
-Map.get(KEY): 获取指定KEY的VALUE值
-Map.keys(): 返回一个新的 Iterator对象
-Map.values(): 返回一个新的 Iterator对象
-Map.set(KEY, VALUE): 设置KEY和VALUE
-Map.entries(): 返回一个新的 Iterator 对象，它按插入顺序包含了Map对象中每个元素的 [key, value] 数组。
-Map.clear(): 移除Map对象的所有键/值对 。
-Map.del...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/04/08</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/03/15/native-h5-communication/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>Native-H5-Communication</span>
-                    </h2>
-                <div class="abstract-content">
-                    在上篇博客提到，在H5开发的app中，希望调用手机自带浏览器显示附件,在实际开发过程中，经常会用到原生app和H5互相调用的问题，之前没有具体了解调用的机制，包括Native和H5如何互相通讯的实现机制。近期参考了一些资料，整理成这篇博客。方便之后继续完善。
-原生和前端的交互有两种方式：url scheme以及JavaScriptCore（在Android中是addJavascriptInterface）
-url scheme交互url scheme适用于所有的系统设备（低版本Android和低版本iOS都适用）但是url scheme是通过url拦截实现的，在大量数据传输，以及效率上都...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = html>html</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = Native>Native</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/03/15</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/11/24/cordova-plugin-inappbrowser/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>cordova-plugin-inappbrowser在app内部打开浏览器链接</span>
-                    </h2>
-                <div class="abstract-content">
-                    在使用vue.js进行app开发的时候，需要实现附件点击，可以查看和下载的功能。原始的实现方案代码如下12345onClick: function() &#123;    var a = document.createElement(&apos;a&apos;)    a.href = url    a.click()&#125;
-这个方案在安卓下是自动跳转到默认浏览器打开，可以自行选择查看还是下载，但是在iOS下，会在app内部打开，由于iOS没有返回按钮，只能杀掉app,重新进入，不符合要求。查阅资料发现，可以采用cordova-plugin-inappbrowser实现在app内部...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = vue.js>vue.js</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = ios>ios</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/24</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/11/09/html-viewport-set/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>移动端Web页面适配方案</span>
-                    </h2>
-                <div class="abstract-content">
-                    延续之前的移动端项目开发，需求要求把从后台获取到的一段html显示在界面上。
-v-html解析html文本在Vue.js上有个指令是v-html。具体语法是：1&lt;div v-html=&quot;html&quot;&gt;&lt;/div&gt;
-其中html部分替换成要绑定的html就可以了，v-html可以解析html代码段并显示出来。还有一个相似的指令v-text可以将以文字部分显示出来。以上就完成了将html插入页面的操作。但是存在着问题，插入的html是web页面格式的，显示在移动端的时候会出现横向滚动条，不符合我们项目的要求。因此，如何才能适配呢？
-meta标签的vi...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = vue.js>vue.js</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = html>html</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = 移动端>移动端</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/09</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/11/07/myfirstblog/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>github pages 和 hexo 配置个人博客</span>
-                    </h2>
-                <div class="abstract-content">
-                    之前在CSDN上写博客，今天心血来潮，决定自己搭个博客。采用github pages 和 hexo,现在把搭建过程和遇到的问题整理一下～
-新建git仓库这个过程很简单，在github上新建名字为 用户名.github.io 的仓库
-安装hexo1npm install -g hexo-cli
-采用npm进行安装,安装过程报错，Permission denied加了sudo1sudo npm install -g hexo-cli
-报错，cannot create highlight_alias.json: Permission denied运行命令1npm config set unsa...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = hexo>hexo</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/07</span>
-                </div>
-            </div>
-        </article>
-    
-    
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2017/11/07/hello-world/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>Hello World</span>
-                    </h2>
-                <div class="abstract-content">
-                    Welcome to Hexo! This is your very first post. Check documentation for more info. If you get any problems when using Hexo, you can find the answer in troubleshooting or you can ask me on GitHub.
-Quick StartCreate a new post1$ hexo new "My New Post"
-More info: Writing
-Run server1$ hexo server
-More...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2017/11/07</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        // id: "js-map-sort", // 可选。默认为 location.href
+        owner: 'lifeilu',
+        repo: 'lifeilu.github.io',
+        oauth: {
+            client_id: '6f364d2a3b9e2ccf2f0a',
+            client_secret: '4b0e7fcb22ea53f8a41068aba4fb28159f7c6aeb',
+        },
+    })
+    gitment.render('container')
+
+</script>
+
+    <!--PC版-->
+
+    <!--PC版-->
+
+
     
 </main>
             <!-- profile -->
@@ -385,6 +296,13 @@ More...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#经常会用到ES6的Map排序-总结一下"><span class="toc-number">1.</span> <span class="toc-text">经常会用到ES6的Map排序,总结一下</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#js-ES6-Map-functions"><span class="toc-number">1.1.</span> <span class="toc-text">js ES6 Map functions</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js-sort-by-key"><span class="toc-number">1.2.</span> <span class="toc-text">js sort by key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#js-sort-by-value"><span class="toc-number">1.3.</span> <span class="toc-text">js sort by value</span></a></li></ol></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
