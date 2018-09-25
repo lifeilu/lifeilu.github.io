@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no" >
     <title>
         
-        lifeilu
+        N边形过渡动画 · lifeilu
         
     </title>
     <link rel="icon" href= /assests/favicon.ico>
@@ -50,11 +50,22 @@
     
 </head>
     
+        <body class="post-body">
+    
     
 <header class="header">
 
     <div class="header-sidebar-menu">&#xe775;</div>
     <!-- post页的toggle banner  -->
+    
+    <div class="banner">
+            <div class="blog-title">
+                <a href="/" >Fei Blog</a>
+            </div>
+            <div class="post-title">
+                <a href="#" class="post-name">N边形过渡动画</a>
+            </div>
+    </div>
     
     <a class="home-link" href=/>Fei Blog</a>
 </header>
@@ -62,21 +73,49 @@
         <div class="site-intro">
     
     <!-- 主页  -->
+    
+    
+    <!-- 404页  -->
             
-    <div class="site-intro-img" style="background-image: url(/)"></div>
+    <div class="site-intro-img" style="background-image: url(http://oumn0o088.bkt.clouddn.com/post-bg.jpg)"></div>
     <div class="site-intro-placeholder"></div>
     <div class="site-intro-meta">
         <!-- 标题  -->
         <h1 class="intro-title">
             <!-- 主页  -->
             
+            N边形过渡动画
+            <!-- 404 -->
+            
         </h1>
         <!-- 副标题 -->
         <p class="intro-subtitle">
             <!-- 主页副标题  -->
             
+            
+            <!-- 404 -->
+            
         </p>
         <!-- 文章页meta -->
+        
+            <!-- 文章页标签  -->
+            
+                <div class= post-intro-tags >
+    
+        <a class="post-tag" href="javascript:void(0);" data-href = css>css</a>
+    
+</div>
+            
+            <div class="post-intro-meta">
+                <span class="post-intro-calander iconfont-archer">&#xe676;</span>
+                <span class="post-intro-time">2018/09/25</span>
+            </div>
+        <!-- 不蒜子  -->
+        
+        <span id="busuanzi_container_page_pv" style='color: rgba(255,255,255,0.5);'>
+            阅读量:<span id="busuanzi_value_page_pv"></span>
+        </span>
+        
         
     </div>
 </div>
@@ -144,47 +183,55 @@
             }
         </script>
         <div class="container container-unloaded">
-            <main class="main index-page">
+            <main class="main post-page">
+    <article class="article-entry">
+        <p>整理一波CSS的笔记。</p>
+<h2 id="N变形过渡动画实现，clip-path"><a href="#N变形过渡动画实现，clip-path" class="headerlink" title="N变形过渡动画实现，clip-path"></a>N变形过渡动画实现，clip-path</h2><p>本篇是随机生成2000个点，clip-path连接这些点，进行随机变换。<br>代码如下<br><figure class="highlight plain"><table><tr><td class="gutter"><pre><div class="line">1</div><div class="line">2</div><div class="line">3</div><div class="line">4</div><div class="line">5</div><div class="line">6</div><div class="line">7</div><div class="line">8</div><div class="line">9</div><div class="line">10</div><div class="line">11</div><div class="line">12</div><div class="line">13</div><div class="line">14</div><div class="line">15</div><div class="line">16</div><div class="line">17</div><div class="line">18</div><div class="line">19</div><div class="line">20</div><div class="line">21</div><div class="line">22</div><div class="line">23</div><div class="line">24</div><div class="line">25</div><div class="line">26</div><div class="line">27</div><div class="line">28</div><div class="line">29</div><div class="line">30</div><div class="line">31</div><div class="line">32</div><div class="line">33</div><div class="line">34</div><div class="line">35</div><div class="line">36</div><div class="line">37</div><div class="line">38</div><div class="line">39</div></pre></td><td class="code"><pre><div class="line">&lt;div&gt;&lt;/div&gt;</div><div class="line"></div><div class="line">&lt;style lang=&apos;scss&apos;&gt;</div><div class="line">div &#123;</div><div class="line">    width: 300px;</div><div class="line">    height: 300px;</div><div class="line">    position: absolute;</div><div class="line">    top: 50%;</div><div class="line">    left: 50%;</div><div class="line">    transform: translate(-50%, -50%);</div><div class="line">    transition: all .5s;</div><div class="line">    transition-timing-function: cubic-bezier(.92,-0.5,1,.12);</div><div class="line">    border-radius: 50%;</div><div class="line">&#125;</div><div class="line">&lt;/style&gt;</div><div class="line"></div><div class="line">&lt;script type=&quot;text/javascript&quot;&gt;</div><div class="line">setInterval(function() &#123;</div><div class="line">    const length = 2000;</div><div class="line"></div><div class="line">    let el = document.querySelectorAll(&quot;div&quot;)[0];</div><div class="line">    let coordinate = &quot;&quot;;</div><div class="line"></div><div class="line">    for (let i = 0; i &lt; length; i++) &#123;</div><div class="line">        coordinate +=</div><div class="line">            parseInt(Math.random() * 10000) / 100 +</div><div class="line">            &quot;% &quot; +</div><div class="line">            parseInt(Math.random() * 10000) / 100 +</div><div class="line">            &quot;%, &quot;;</div><div class="line">    &#125;</div><div class="line"></div><div class="line">    coordinate = &quot;polygon(&quot; + coordinate.slice(0, -2) + &quot;)&quot;;</div><div class="line"></div><div class="line">    el.style.clipPath = coordinate;</div><div class="line">    el.style.backgroundColor =</div><div class="line">        &quot;#&quot; + (~~(Math.random() * (1 &lt;&lt; 24))).toString(16);</div><div class="line">&#125;, 500);</div><div class="line"></div><div class="line">&lt;/script&gt;</div></pre></td></tr></table></figure></p>
+<h2 id="参考链接"><a href="#参考链接" class="headerlink" title="参考链接"></a>参考链接</h2><ul>
+<li><a href="https://github.com/chokcoco/iCSS/issues/18" target="_blank" rel="external">谈谈一些有趣的CSS题目（30）– 奇妙的 CSS shapes(CSS图形)</a></li>
+</ul>
+
+    </article>
+    <!-- 前后页  -->
+    <ul class="post-pager">
+        
+        
+            <li class="previous">
+                <a href= "/2018/04/08/js-map-sort/" title= js-map-sort >
+                    <span>Previous Post</span>
+                    <span>js-map-sort</span>
+                </a>
+            </li>
+        
+    </ul>
+    <!-- 评论插件 -->
+    <!-- 来必力City版安装代码 -->
+
+<!-- City版安装代码已完成 -->
     
     
-    
-        <article class="index-post">
-            <a class="content-show-full" href = "/2018/04/08/js-map-sort/" >
-                    <h2 class="abstract-title">
-                        
-                        <span>js-map-sort</span>
-                    </h2>
-                <div class="abstract-content">
-                    经常会用到ES6的Map排序,总结一下ES6 Map functions
-Map.has(KEY): 判断是否含有KEY
-Map.get(KEY): 获取指定KEY的VALUE值
-Map.keys(): 返回一个新的 Iterator对象
-Map.values(): 返回一个新的 Iterator对象
-Map.set(KEY, VALUE): 设置KEY和VALUE
-Map.entries(): 返回一个新的 Iterator 对象，它按插入顺序包含了Map对象中每个元素的 [key, value] 数组。
-Map.clear(): 移除Map对象的所有键/值对 。
-Map.delete...
-                </div>
-            </a>
-            <div class="abstract-post-meta">
-                <!-- tags  -->
-                
-                <div class= abstract-tags >
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = js>js</a>
-    
-        <a class="post-tag" href="javascript:void(0);" data-href = sort>sort</a>
-    
-</div>
-                
-                <!-- date  -->
-                <div class="abstract-date">
-                    <span class="abstract-calander iconfont-archer"></span><span class="abstract-time">2018/04/08</span>
-                </div>
-            </div>
-        </article>
-    
-    <!-- paginator  -->
+<div id="container"></div>
+<link rel="stylesheet" href="https://imsun.github.io/gitment/style/default.css">
+<script src="https://imsun.github.io/gitment/dist/gitment.browser.js"></script>
+<script>
+    var gitment = new Gitment({
+        // id: "N边形过渡动画", // 可选。默认为 location.href
+        owner: 'lifeilu',
+        repo: 'lifeilu.github.io',
+        oauth: {
+            client_id: '6f364d2a3b9e2ccf2f0a',
+            client_secret: '4b0e7fcb22ea53f8a41068aba4fb28159f7c6aeb',
+        },
+    })
+    gitment.render('container')
+
+</script>
+
+    <!--PC版-->
+
+    <!--PC版-->
+
+
     
 </main>
             <!-- profile -->
@@ -237,6 +284,13 @@ Map.delete...
 </footer>
     </div>
     <!-- toc -->
+    
+    <div class="toc-wrapper">
+        <div class="toc-catalog">
+            <span class="iconfont-archer catalog-icon">&#xe613;</span><span>CATALOG</span>
+        </div>
+        <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#N变形过渡动画实现，clip-path"><span class="toc-number">1.</span> <span class="toc-text">N变形过渡动画实现，clip-path</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#参考链接"><span class="toc-number">2.</span> <span class="toc-text">参考链接</span></a></li></ol>
+    </div>
     
     <div class="back-top">&#xe639;</div>
     <div class="sidebar">
